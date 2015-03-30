@@ -1,0 +1,53 @@
+<Context>
+    <Resource name="authorizationDataSource" auth="Container" type="javax.sql.DataSource"
+              username="root" password=""
+              url="jdbc:mysql://localhost:3306/authorization"
+              driverClassName="com.mysql.jdbc.Driver"
+              initialSize="2" maxWait="5000"
+              maxActive="5" maxIdle="8"
+              validationQuery="select 1"
+              minEvictableIdleTimeMillis = "300000"
+              timeBetweenEvictionRunsMillis = "60000"
+            />
+
+    <!--<Resource name="authorizationDataSourceNew" auth="Container" type="javax.sql.DataSource"
+              username="autorizacion" password="gai7Fo4e"
+              url="jdbc:mysql://sqldesa.uchile.cl:3306/authorization_new"
+              driverClassName="com.mysql.jdbc.Driver"
+              initialSize="5" maxWait="5000"
+              maxActive="10" maxIdle="8"
+              validationQuery="select 1 from dual"
+            />-->
+
+    <!--<Resource name="authorizationDataSource" auth="Container" type="javax.sql.DataSource"
+              username="autorizacion" password="gai7Fo4e"
+              url="jdbc:mysql://sqldesa.uchile.cl:3306/authorization"
+              driverClassName="com.mysql.jdbc.Driver"
+              initialSize="2" maxWait="5000"
+              maxActive="5" maxIdle="8"
+              validationQuery="select 1"
+              minEvictableIdleTimeMillis = "300000"
+              timeBetweenEvictionRunsMillis = "60000"
+            />-->
+    <!--
+    <Resource name="jdbc/PASP" auth="Container" type="javax.sql.DataSource"
+              username="wfpasp_desa" password="dsr2205"
+              url="jdbc:oracle:thin:@//oracle11gdesa.uchile.cl:1521/web"
+              driverClassName="oracle.jdbc.driver.OracleDriver"
+              initialSize="5" maxWait="5000"
+              maxActive="10" maxIdle="8"
+              validationQuery="select 1 from dual"
+            />
+
+    <Resource name="sugDataSource" auth="Container" type="javax.sql.DataSource"
+              username="sug" password="desa"
+              url="jdbc:oracle:thin:@//sugdesa64.uchile.cl:1521/sug.uchile.cl"
+              driverClassName="oracle.jdbc.driver.OracleDriver"
+              initialSize="5" maxWait="5000"
+              maxActive="10" maxIdle="8"
+              minEvictableIdleTimeMillis="300000"
+              timeBetweenEvictionRunsMillis="60000"
+              validationQuery="select 1 from dual"
+            />
+    -->
+</Context>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+<!--<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">-->
+
+    <persistence-unit transaction-type="RESOURCE_LOCAL" name="reserva">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <jta-data-source>openjpa</jta-data-source>
+        <!--<class>cl.nativ.operativa.reserva.domain.Permiso</class>
+        <class>cl.uchile.sti.LibeBussines.model.Adjunto</class>
+        <class>cl.uchile.sti.LibeBussines.model.Despacho</class>
+        <class>cl.uchile.sti.LibeBussines.model.DespachoUnido</class>
+        <class>cl.uchile.sti.LibeBussines.model.Expediente</class>
+        <class>cl.uchile.sti.LibeBussines.model.DestinoExpediente</class>
+        <class>cl.uchile.sti.LibeBussines.model.DetalleListaDestinatario</class>
+        <class>cl.uchile.sti.LibeBussines.model.EstadoDespacho</class>
+        <class>cl.uchile.sti.LibeBussines.model.ExpedienteVinculo</class>
+        <class>cl.uchile.sti.LibeBussines.model.FormatoExpediente</class>
+        <class>cl.uchile.sti.LibeBussines.model.HistorialDespacho</class>
+        <class>cl.uchile.sti.LibeBussines.model.ListaDestinatarios</class>
+        <class>cl.uchile.sti.LibeBussines.model.TipoAdjunto</class>
+        <class>cl.uchile.sti.LibeBussines.model.TipoDestino</class>
+        <class>cl.uchile.sti.LibeBussines.model.TipoDocumento</class>-->
+
+        <!--<properties>-->
+        <!--<property name="openjpa.ConnectionURL" value="jdbc:mysql://sqldesa.uchile.cl:3306/libe?sessionVariables=storage_engine=InnoDB"/>-->
+        <!--<property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>-->
+        <!--<property name="openjpa.ConnectionUserName" value="root"/>-->
+        <!--<property name="openjpa.ConnectionPassword" value="i1e3a4s5g6"/>-->
+        <!--<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=OpenJPATables=true, ForeignKeys=true')"/>-->
+        <!--&lt;!&ndash;<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='dropDB,createDB,add,OpenJPATables=true, ForeignKeys=true')"/>&ndash;&gt;-->
+        <!--<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=cascade,JoinForeignKeyDeleteAction=cascade"/>-->
+        <!--<property name="openjpa.Log" value="DefaultLevel=ERROR, Tool=INFO"/>-->
+        <!--<property name="openjpa.DynamicEnhancementAgent" value="true"/>-->
+        <!--<property name="openjpa.jdbc.DBDictionary" value="org.apache.openjpa.jdbc.sql.MySQLDictionary"/>-->
+        <!--<property name="open.jpa.Multithreaded" value="true"/>-->
+        <!--</properties>-->
+
+        <!--para base de datos joshe-->
+        <!--<properties>-->
+        <!--<property name="openjpa.ConnectionURL" value="jdbc:mysql://172.16.244.48:3306/libe?sessionVariables=storage_engine=InnoDB"/>-->
+        <!--<property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>-->
+        <!--<property name="openjpa.ConnectionUserName" value="root"/>-->
+        <!--<property name="openjpa.ConnectionPassword" value="123456"/>-->
+        <!--<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='dropDB,createDB,add,OpenJPATables=true, ForeignKeys=true')"/>-->
+        <!--<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=cascade,JoinForeignKeyDeleteAction=cascade"/>-->
+        <!--<property name="openjpa.Log" value="DefaultLevel=ERROR, Tool=INFO"/>-->
+        <!--<property name="openjpa.DynamicEnhancementAgent" value="true"/>-->
+        <!--<property name="openjpa.jdbc.DBDictionary" value="org.apache.openjpa.jdbc.sql.MySQLDictionary"/>-->
+        <!--<property name="open.jpa.Multithreaded" value="true"/>-->
+        <!--</properties>-->
+    </persistence-unit>
+</persistence>

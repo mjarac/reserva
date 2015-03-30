@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <import resource="classpath:cl/native/operativa/reserva/spring/controller.xml"/>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- override these for application-specific URLs if you like:-->
+        <property name="loginUrl" value="/login.jsf"/>
+        <property name="successUrl" value="/main.jsf"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsf"/>
+        <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean  -->
+        <!-- defined will be automatically acquired and available via its beanName in chain        -->
+        <!-- definitions, but you can perform instance overrides or name aliases here if you like: -->
+        <property name="filters">
+            <util:map>
+                <entry key="logout">
+                    <bean class="org.apache.shiro.web.filter.authc.LogoutFilter">
+                        <property name="redirectUrl" value="/login.jsf"/>
+                    </bean>
+                </entry>
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /logout = logout
+                /main.jsf = authc, perms[botonsaludar:ver]
+                /** = authc
+            </value>
+        </property>
+    </bean>
+
+    <!--<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />-->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManager" ref="ehCacheManager"/>
+    </bean>
+
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="file:${CONFIG_PATH}/reserva/ehcache.xml" />
+    </bean>
+
+    <!--<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionIdCookie">
+            <bean class="org.apache.shiro.web.servlet.SimpleCookie">
+                <property name="name" value="JSESSIONIDNATIVO" />
+                <property name="domain" value="reserva" />
+                <property name="path" value="/" />
+            </bean>
+        </property>
+    </bean>-->
+
+    <!-- Define the Shiro Realm implementation you want to use to connect to your back-end -->
+    <bean id="myCustomerRealm" class="cl.nativ.operativa.reserva.authorization.security.AuthorizationRealm">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="authorizationCacheName" value="realmsCache"/>
+        <property name="authorizationController" ref="authorizationController"/>
+    </bean>
+
+    <bean id="securityManager" class="cl.nativ.operativa.reserva.authorization.security.SecurityManager">
+        <property name="cacheManager" ref="cacheManager" />
+        <!--<property name="sessionManager" ref="sessionManager"/>-->
+        <property name="realm" ref="myCustomerRealm" />
+        <property name="sessionMode" value="native" />
+    </bean>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <!-- TODO: security datasource: -->
+    <!--<bean id="myRealmJdbc" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+        <property name="dataSource" ref="authorizationDataSourceNew"/>
+        <property name="authenticationQuery" value="SELECT password, salt FROM User WHERE email = ?"/>
+        <property name="userRolesQuery" value="select roleName from UserRole where email = ?"/>
+        <property name="permissionsQuery" value="select permission from RolesPermission where roleName = ?"/>
+    </bean>-->
+
+    <!-- TODO: configuracion ldap-->
+    <!--<bean id="myRealmLdap" class="org.apache.shiro.realm.ldap.JndiLdapRealm">
+        <property name="contextFactory" ref="contextFactory"/>
+        <property name="userDnTemplate" value="uid={0},ou=users,dc=mycompany,dc=com"/>
+    </bean>
+    <bean id="contextFactory" class="org.apache.shiro.realm.ldap.JndiLdapContextFactory">
+        <property name="url" value="ldap://ldapHost:389"/>
+        <property name="systemUsername" value="XXXX"/>
+        <property name="systemPassword" value="YYYY"/>
+        <property name="authenticationMechanism" value="DIGEST-MD5"/>
+    </bean>-->
+
+    <!-- TODO: configuracion DE TEST-->
+    <bean id="myAppRealm" class="org.apache.shiro.realm.text.TextConfigurationRealm">
+        <property name="userDefinitions">
+            <value>
+                frank = abcd, ROLE_USER
+            </value>
+        </property>
+    </bean>
+</beans>
